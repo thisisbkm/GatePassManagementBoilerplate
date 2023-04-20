@@ -20,6 +20,7 @@ class CategoryFragmentPagerAdapter(
     override fun getItem(position: Int): Fragment {
         return when (position) {
             Constants.CHECKIN -> Checkin()
+            Constants.SCANNER -> BarCode()
             Constants.CHECKOUT -> Checkout()
             Constants.LOGS -> Logs()
             else -> {Checkin()}
@@ -27,12 +28,13 @@ class CategoryFragmentPagerAdapter(
     }
 
     override fun getCount(): Int {
-        return 3
+        return 4
     }
 
     override fun getPageTitle(position: Int): CharSequence {
         val titleResId: Int = when (position) {
             Constants.CHECKIN -> R.string.check_in
+            Constants.SCANNER -> R.string.scanner
             Constants.CHECKOUT -> R.string.check_out
             Constants.LOGS -> R.string.logs
             else -> {R.string.check_in}

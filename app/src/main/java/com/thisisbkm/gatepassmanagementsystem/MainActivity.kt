@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             viewPager.currentItem = Constants.CHECKOUT
         }else if(id == R.id.logs){
             viewPager.currentItem = Constants.LOGS
+        }else if(id == R.id.scanner){
+            viewPager.currentItem = Constants.SCANNER
         }
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.START)
