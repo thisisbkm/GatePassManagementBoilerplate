@@ -29,7 +29,7 @@ class Checkout : Fragment() {
         if(context!=null){
             val tdb = TinyDB(context)
             val list = tdb.getListInt("MyList")
-            val arr = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list)
+            val arr = ArrayAdapter(requireContext(), R.layout.textviewcurrout, list)
             listView.adapter = arr
             super.setUserVisibleHint(isVisibleToUser)
         }

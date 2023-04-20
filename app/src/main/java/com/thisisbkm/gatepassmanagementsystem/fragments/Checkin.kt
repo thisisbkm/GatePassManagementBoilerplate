@@ -60,7 +60,7 @@ class Checkin : Fragment() {
         return binding.root
     }
     private fun getDateTime(): String? {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(("yy-MM-dd HH:mm")))
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(("dd-MM-yy HH:mm")))
     }
     private fun clearEt(){
         binding.etreg.text.clear()

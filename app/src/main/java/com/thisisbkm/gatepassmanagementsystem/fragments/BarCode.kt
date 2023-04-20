@@ -37,6 +37,7 @@ class BarCode : Fragment() {
         codeScanner.isTouchFocusEnabled = true
         codeScanner.isAutoFocusEnabled = true
         codeScanner.isFlashEnabled = false
+
         codeScanner.formats = CodeScanner.ALL_FORMATS
         codeScanner.decodeCallback = DecodeCallback {
             tg.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
