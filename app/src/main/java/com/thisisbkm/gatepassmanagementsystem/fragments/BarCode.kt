@@ -34,25 +34,33 @@ class BarCode : Fragment() {
         val scannerView = view.findViewById<CodeScannerView>(R.id.scanner_view)
         val activity = requireActivity()
         codeScanner = CodeScanner(activity, scannerView)
+        codeScanner.isTouchFocusEnabled = true
         codeScanner.isAutoFocusEnabled = true
+        codeScanner.isFlashEnabled = false
         codeScanner.formats = CodeScanner.ALL_FORMATS
         codeScanner.decodeCallback = DecodeCallback {
             tg.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
             val list = tdb.getListInt("MyList")
             val ll = tdb.getListString("MyListLogs")
-            val reg = it.text.toString().toInt()
-            activity.runOnUiThread {
-                if (list.contains(reg)) {
-                    list.remove(reg)
-                    ll.add(0, "IN : $reg checked in at " + getDateTime())
-                    Toast.makeText(activity, "$reg Checked In", Toast.LENGTH_SHORT).show()
-                } else {
-                    list.add(reg)
-                    ll.add(0, "OUT : $reg checked out at " + getDateTime())
-                    Toast.makeText(activity, "$reg Checked Out", Toast.LENGTH_SHORT).show()
+            try{
+                val reg = it.text.toString().toInt()
+
+                activity.runOnUiThread {
+                    if (list.contains(reg)) {
+                        list.remove(reg)
+                        ll.add(0, "IN : $reg checked in at " + getDateTime())
+                        Toast.makeText(activity, "$reg Checked In", Toast.LENGTH_SHORT).show()
+                    } else {
+                        list.add(reg)
+                        ll.add(0, "OUT : $reg checked out at " + getDateTime())
+                        Toast.makeText(activity, "$reg Checked Out", Toast.LENGTH_SHORT).show()
+                    }
+                    tdb.putListInt("MyList", list)
+                    tdb.putListString("MyListLogs", ll)
                 }
-                tdb.putListInt("MyList", list)
-                tdb.putListString("MyListLogs", ll)
+            }
+            catch(e:Exception){
+                Toast.makeText(context,"Some Error Occurred", Toast.LENGTH_SHORT).show()
             }
         }
         scannerView.setOnClickListener {
