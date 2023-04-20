@@ -16,9 +16,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/gatepasssystem"
-        android:textColor="@color/black"
+        android:textColor="#fff"
         android:textSize="45sp"
         android:textStyle="bold" />
 

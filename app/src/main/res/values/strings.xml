@@ -2,7 +2,7 @@
     <string name="app_name">GatePassManagementSystem</string>
     <string name="check_in">Add Data</string>
     <string name="check_out">View Data</string>
-    <string name="gatepasssystem">Gate\nPass\nSystem</string>
+    <string name="gatepasssystem">Gate\nPass\nManagement\nSystem</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->
