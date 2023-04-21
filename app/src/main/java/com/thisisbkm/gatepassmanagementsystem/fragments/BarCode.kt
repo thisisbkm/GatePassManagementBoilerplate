@@ -1,6 +1,8 @@
 package com.thisisbkm.gatepassmanagementsystem.fragments
 
-import android.content.Context
+import android.Manifest
+import android.app.Activity
+import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
@@ -8,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
@@ -28,6 +32,13 @@ class BarCode : Fragment() {
         binding = FragmentBarCodeBinding.inflate(layoutInflater, container, false)
         tg = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
         tdb = TinyDB(context)
+        if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                requireContext() as Activity,
+                arrayOf(Manifest.permission.CAMERA), 23
+            )
+
+        }
         return binding.root
     }
 
@@ -36,8 +47,8 @@ class BarCode : Fragment() {
         val activity = requireActivity()
         codeScanner = CodeScanner(activity, scannerView!!)
         codeScanner.isTouchFocusEnabled = true
-        codeScanner.isAutoFocusEnabled = true
-        codeScanner.isFlashEnabled = false
+        codeScanner.isFlashEnabled = true
+        codeScanner.camera = CodeScanner.CAMERA_BACK
 
         codeScanner.formats = CodeScanner.ALL_FORMATS
         codeScanner.decodeCallback = DecodeCallback {
