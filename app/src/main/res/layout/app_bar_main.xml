@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/layer2"
     tools:context="com.thisisbkm.gatepassmanagementsystem.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,14 +16,14 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="@color/teal_200"
-            android:background="@color/black" />
+            app:titleTextColor="#fff"
+            android:background="@color/layer1" />
 
         <!-- TabLayout that provides a horizontal layout to display tabs -->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/sliding_tabs"
             style="@style/CategoryTab"
-            android:background="@color/black"
+            android:background="@color/layer3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="scrollable" />

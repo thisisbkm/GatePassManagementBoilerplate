@@ -14,6 +14,7 @@ import com.thisisbkm.gatepassmanagementsystem.databinding.FragmentCheckoutBindin
 class Checkout : Fragment() {
     private lateinit var binding:FragmentCheckoutBinding
     private lateinit var listView:ListView
+    private lateinit var tdb:TinyDB
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,17 +22,25 @@ class Checkout : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentCheckoutBinding.inflate(layoutInflater, container, false)
         listView = binding.list
+        tdb = TinyDB(context)
+        val list = tdb.getListInt("MyList")
+        val arr = ArrayAdapter(requireContext(), R.layout.textviewcurrout, list)
+        listView.adapter = arr
+        binding.progressBar.visibility = View.GONE
         return binding.root
     }
 
     @Deprecated("Deprecated in Java")
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        if(context!=null){
-            val tdb = TinyDB(context)
-            val list = tdb.getListInt("MyList")
-            val arr = ArrayAdapter(requireContext(), R.layout.textviewcurrout, list)
-            listView.adapter = arr
-            super.setUserVisibleHint(isVisibleToUser)
+        activity?.runOnUiThread {
+            if(context!=null){
+                val list = tdb.getListInt("MyList")
+                val arr = ArrayAdapter(requireContext(), R.layout.textviewcurrout, list)
+                listView.adapter = arr
+                binding.progressBar.visibility = View.GONE
+                super.setUserVisibleHint(isVisibleToUser)
+            }
         }
+
     }
 }

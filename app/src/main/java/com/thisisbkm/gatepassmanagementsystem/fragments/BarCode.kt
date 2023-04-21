@@ -1,5 +1,6 @@
 package com.thisisbkm.gatepassmanagementsystem.fragments
 
+import android.content.Context
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
@@ -30,10 +31,10 @@ class BarCode : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val scannerView = view.findViewById<CodeScannerView>(R.id.scanner_view)
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        val scannerView = view?.findViewById<CodeScannerView>(R.id.scanner_view)
         val activity = requireActivity()
-        codeScanner = CodeScanner(activity, scannerView)
+        codeScanner = CodeScanner(activity, scannerView!!)
         codeScanner.isTouchFocusEnabled = true
         codeScanner.isAutoFocusEnabled = true
         codeScanner.isFlashEnabled = false
@@ -66,6 +67,18 @@ class BarCode : Fragment() {
         }
         scannerView.setOnClickListener {
             codeScanner.startPreview()
+        }
+        super.onViewStateRestored(savedInstanceState)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun setUserVisibleHint(isVisibleToUser: Boolean){
+        if(context!=null){
+        if(isVisibleToUser)
+            codeScanner.startPreview()
+        else
+            codeScanner.releaseResources()
+        super.setUserVisibleHint(isVisibleToUser)
         }
     }
     private fun getDateTime(): String? {

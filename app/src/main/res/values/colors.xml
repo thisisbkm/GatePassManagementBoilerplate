@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="layer1">#080808</color>
+    <color name="layer2">#0f0f0f</color>
+    <color name="layer3">#121212</color>
+    <color name="layer4">#212121</color>
+    <color name="layer5">#262626</color>
+    <color name="layer6">#2d2e2e</color>
+    <color name="layer7">#363636</color>
+    <color name="cred">#db1a3e</color>
+    <color name="cpurple">#db0bb5</color>
+    <color name="green">#16a603</color>
+    <color name="bpurple">#8f13bd</color>
+    <color name="bpurdark">#600a80</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

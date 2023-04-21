@@ -26,18 +26,19 @@ class Logs : Fragment() {
             val al = arrayListOf<String>()
             TinyDB(context).putListString("MyListLogs", al)
             listView.adapter = ArrayAdapter(requireContext(), R.layout.textviewout, al)
-
         }
         return binding.root
     }
     @Deprecated("Deprecated in Java")
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        if(context!=null){
-            val tdb = TinyDB(context)
-            val list = tdb.getListString("MyListLogs")
-            val arr = ArrayAdapter(requireContext(), R.layout.textviewout, list)
-            listView.adapter = arr
-            super.setUserVisibleHint(isVisibleToUser)
+        activity?.runOnUiThread {
+            if(context!=null){
+                val tdb = TinyDB(context)
+                val list = tdb.getListString("MyListLogs")
+                val arr = ArrayAdapter(requireContext(), R.layout.textviewout, list)
+                listView.adapter = arr
+                super.setUserVisibleHint(isVisibleToUser)
+            }
         }
     }
 }
